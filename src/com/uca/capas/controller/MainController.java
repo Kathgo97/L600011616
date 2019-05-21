@@ -19,12 +19,12 @@ public class MainController {
 	private StudentDAO studentDao;
 	
 	//Controlador que lleva a formulario
-	@RequestMapping(value="/save", method=RequestMethod.POST)
-	public ModelAndView insert(){
-	ModelAndView mav = new ModelAndView();
-	mav.addObject("student", new Student()); 
-	mav.setViewName("form");
-	return mav;
+	@RequestMapping(value= "/save", method=RequestMethod.POST)
+	public ModelAndView insert() {
+		ModelAndView mav = new ModelAndView();
+		mav.addObject("student",new Student());
+		mav.setViewName("form");
+		return mav;
 	}
 	
 	@RequestMapping("/")

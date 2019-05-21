@@ -39,13 +39,13 @@ public class StudentDAOImpl implements StudentDAO {
 	@Transactional
 	public int save(Student s, Integer newRow) throws DataAccessException{
 		try {
-			if(newRow==1) entityManager.persist(s);
-			else entityManager.merge(s);
-			entityManager.flush();
+			if(newRow == 1) entityManager.persist(s); //Nueva fila uso persist
+			else entityManager.merge(s); // Ya existe la fila uso merge
+			entityManager.flush(); //Sincronizo con la base de datos
 			return 1;
 		}catch(Throwable e) {
 			e.printStackTrace();
-			return 1; 
+			return 1;
 		}
 	}
 

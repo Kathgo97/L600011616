@@ -31,11 +31,11 @@ public class JpaConfiguration {
 		return em;
 	}
 	
-	@Bean
+	@Bean 
 	JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
 		JpaTransactionManager transactionManager = new JpaTransactionManager();
-		transactionManager.setEntityManagerFactory(entityManagerFactory); 
-		return transactionManager; 
+		transactionManager.setEntityManagerFactory(entityManagerFactory);
+		return transactionManager;
 	}
 	
 	@Bean
