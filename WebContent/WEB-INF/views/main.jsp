@@ -22,6 +22,9 @@
 					<td>${students.lName}</td>
 					<td>${students.sAge}</td>
 					<td>${students.activoDelegate}</td>
+					<td>
+						<button onclick="window.location.href = '${pageContext.request.contextPath}/deletestudent?id=${students.cStudent}'">Borrar</button>
+					</td>
 				</tr>	
 			</c:forEach>
 	</table>

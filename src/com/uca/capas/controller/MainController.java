@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.dao.StudentDAO;
@@ -41,19 +42,49 @@ public class MainController {
 		mav.setViewName("main");
 		return mav;
 	}
-	
-	@RequestMapping(value="/formData")
-	public ModelAndView save(@ModelAttribute Student s){
-		ModelAndView mav= new ModelAndView(); 
-		List<Student> students = null;
-		try {
-			studentDao.save(s,1);
-		}catch(Exception e) {
+		
+		@RequestMapping(value="/formData")
+		public ModelAndView save(@ModelAttribute Student s){
+			ModelAndView mav= new ModelAndView(); 
+			List<Student> students = null;
+			try {
+				studentDao.save(s,1);
+			}catch(Exception e) {
+				}
+			students = studentDao.findAll(); 
+			mav.addObject("students",students); 
+			mav.setViewName("main");
+			return mav; 
 			}
-		students = studentDao.findAll(); 
-		mav.addObject("students",students); 
-		mav.setViewName("main");
-		return mav; 
-		}
+		@RequestMapping("/deletestudent")
+		public ModelAndView deleteStudent(@RequestParam(value="") Integer id) {
+			ModelAndView mav = new ModelAndView();
+			
+			mav.setViewName("result");
+			
+			Student student = null;
+			
+			if(id == 0) {
+				student =  new Student();
+			}else {
+				try {
+					student = studentDao.findOne(id);
+				} catch (Exception e) {
+					e.printStackTrace();
+					student = new Student();
+				}
+			}
+			
+			mav.addObject("student", student);
+			
+			try {
+				mav.addObject("message", "Registro eliminado");
+				studentDao.delete(student);
+			} catch (Exception e) {
+				mav.addObject("message", "Registro no eliminado");
+			}
+			
+			return mav;
+			}
 	}
 

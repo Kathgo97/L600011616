@@ -50,9 +50,20 @@ public class StudentDAOImpl implements StudentDAO {
 	}
 
 	@Override
+	@Transactional
 	public int delete(Student s) throws DataAccessException {
 		// TODO Auto-generated method stub
+		try {
+			if(entityManager.contains(s)) {
+				entityManager.remove(s);
+			}else {
+				entityManager.remove(entityManager.merge(s));
+			}
+		} catch (Throwable e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return 0;
+		}
 		return 0;
 	}
-	
 }

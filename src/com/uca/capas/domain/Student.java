@@ -34,9 +34,9 @@ public class Student {
 	private Boolean bActivo;
 
 	//Constructores, Setters y Getters
-	public Student(Integer cCLiente, String sName, String lName, Integer sAge, Boolean bActivo) {
+	public Student(Integer cStudent, String sName, String lName, Integer sAge, Boolean bActivo) {
 		super();
-		this.cStudent = cCLiente;
+		this.cStudent = cStudent;
 		this.sName = sName;
 		this.lName = lName;
 		this.sAge = sAge;
@@ -52,13 +52,13 @@ public class Student {
 
 
 	//Setters y Getters
-	public Integer getcCLiente() {
+	public Integer getcStudent() {
 		return cStudent;
 	}
 
 	
-	public void setcCLiente(Integer cCLiente) {
-		this.cStudent = cCLiente;
+	public void setcStudent(Integer cStudent) {
+		this.cStudent = cStudent;
 	}
 
 	public String getsName() {
@@ -94,7 +94,7 @@ public class Student {
 		this.bActivo = bActivo;
 	}
 	
-	//Funciones delegate
+
 	public String getActivoDelegate() {
 		if(this.bActivo == null) return "";
 		else {
